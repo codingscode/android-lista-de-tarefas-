@@ -1,7 +1,9 @@
-package pacote.udemy66listadetarefas;
+package pacote.udemy66listadetarefas.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import pacote.udemy66listadetarefas.R;
 
 public class AdicionarTarefa extends AppCompatActivity {
 
