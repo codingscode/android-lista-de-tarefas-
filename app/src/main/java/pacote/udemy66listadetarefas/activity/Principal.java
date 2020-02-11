@@ -8,9 +8,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.List;
 
 import pacote.udemy66listadetarefas.R;
 import pacote.udemy66listadetarefas.adapter.TarefaAdapter;
+import pacote.udemy66listadetarefas.helper.RecyclerItemClickListener;
 import pacote.udemy66listadetarefas.model.Tarefa;
 
 public class Principal extends AppCompatActivity {
@@ -34,6 +37,30 @@ public class Principal extends AppCompatActivity {
 
         //Configurar recycler
         recyclerView = findViewById(R.id.recyclerView);
+
+        //Adicionar evento de clique
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Log.i("clique", "onItemClick");
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Log.i("clique", "onLongItemClick");
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +79,7 @@ public class Principal extends AppCompatActivity {
         listaTarefas.add(tarefa1);
 
         Tarefa tarefa2 = new Tarefa();
-        tarefa2.setNomeTarefa("Ir ao mercado");
+        tarefa2.setNomeTarefa("Ir ao shopping");
         listaTarefas.add(tarefa2);
 
         //lista de tarefas no Recyclerview
