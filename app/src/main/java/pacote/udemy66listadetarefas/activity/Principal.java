@@ -1,5 +1,6 @@
 package pacote.udemy66listadetarefas.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import pacote.udemy66listadetarefas.R;
 import pacote.udemy66listadetarefas.adapter.TarefaAdapter;
+import pacote.udemy66listadetarefas.helper.DbHelper;
 import pacote.udemy66listadetarefas.helper.RecyclerItemClickListener;
 import pacote.udemy66listadetarefas.model.Tarefa;
 
@@ -37,6 +39,13 @@ public class Principal extends AppCompatActivity {
 
         //Configurar recycler
         recyclerView = findViewById(R.id.recyclerView);
+
+        DbHelper db = new DbHelper(getApplicationContext());
+
+        ContentValues cv = new ContentValues();
+        cv.put("nome", "Teste");
+
+        db.getWritableDatabase().insert("tarefas", null, cv);
 
         //Adicionar evento de clique
         recyclerView.addOnItemTouchListener(

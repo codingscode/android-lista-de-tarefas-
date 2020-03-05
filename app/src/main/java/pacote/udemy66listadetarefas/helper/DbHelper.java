@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DbHelper extends SQLiteOpenHelper {
-    public static int VERSION = 1;
+    public static int VERSION = 2; //depois de executado o 1
     public static String NOME_DB = "DB_TAREFAS";
     public static String TABELA_TAREFAS = "tarefas";
 
@@ -17,6 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABELA_TAREFAS + " (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL); ";
+        //String sql = "DROP TABLE IF EXISTS " + TABELA_TAREFAS + " (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL); ";
 
         try {
             db.execSQL(sql);
